@@ -1,26 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <ul>
+    <li v-for="(item,i) in product" :key="i">
+      {{product[i].title}}
+    </li>
+  </ul>
+
+  <test />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import vdata from './data.js'
+import banner from './components/banner.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      product:vdata,
+    }
+  },
+  components:{
+    test:banner
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+* {margin:0; padding:0;}
+li {list-style:none}
 </style>
