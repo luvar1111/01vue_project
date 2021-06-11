@@ -1,7 +1,7 @@
 <template>
   <my-banner/>
 
-  <div class="black-bg" v-if="proView == true">
+  <!-- <div class="black-bg" v-if="proView == true">
     <div class="white-bg">
       <img v-bind:src="product[proNum].image">
       <div>{{product[proNum].title}}</div>
@@ -9,14 +9,17 @@
       <div>{{product[proNum].content}}</div>
       <button v-on:click="proView=false">닫기</button>
     </div>
-  </div>
-  <ul class="view">
+  </div> -->
+  <modal :product="product" :proView="proView" :proNum="proNum" @modalClose="proView=false"/>
+
+  <!-- <ul class="view">
     <li v-for="(item,i) in product" :key="i">
       <img v-bind:src="product[i].image">
       <div>{{product[i].title}} <span v-on:click="proView=true;proNum=i">[상세보기]</span></div>
       <div>{{product[i].price}}</div>
     </li>
-  </ul>
+  </ul> -->
+  <product :product="product[i]" v-for="(item,i) in product" :key="i" @modalOpen="proView=true;proNum=$event"/>
   
   
 </template>
@@ -24,6 +27,8 @@
 <script>
 import vdata from './data.js'
 import banner from './components/banner.vue'
+import modal from './components/modal.vue'
+import product from './components/product.vue'
 
 
 export default {
@@ -36,7 +41,9 @@ export default {
     }
   },
   components:{
-    'my-banner':banner
+    'my-banner':banner,
+    modal:modal,
+    product:product,
   }
 }
 </script>
